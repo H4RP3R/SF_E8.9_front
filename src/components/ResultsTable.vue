@@ -23,6 +23,9 @@
 
 <script>
 import axios from 'axios';
+import {eventBus} from '../main.js';
+
+
 
 const URL = 'http://127.0.0.1:8000/results/'
 
@@ -43,11 +46,27 @@ export default {
                 }).catch((e) => {
                     console.log(e);
                 })
+        },
+
+        pollData() {
+            let i = 0;
+            const oldResults = this.results
+            let x = this.polling = setInterval(() => {
+                this.getData()
+                i++;
+                if ((i >= 12) || (oldResults !== this.results)) {
+                    clearInterval(x)
+                }
+            }, 3000)
         }
     },
 
     created() {
         this.getData();
+
+        eventBus.$on('runUpdate', () => {
+            this.pollData();
+        })
     },
 }
 </script>
@@ -58,14 +77,13 @@ export default {
 
 table {
     max-width: 960px;
-    margin-top: 40px;
     color: white;
 }
 
 th {
     font-family: 'Cabin Sketch', cursive;
-    font-size: 20px;
-    background-color: rgba(115, 125, 236, 0.8)
+    font-size: 22px;
+    background-color: rgba(115, 125, 236, 0.8);
 }
 
 td,
@@ -77,6 +95,6 @@ th {
 td {
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
-    background-color: rgba(129, 210, 203,0.5);
+    background-color: rgba(129, 210, 203, 0.5);
 }
 </style>

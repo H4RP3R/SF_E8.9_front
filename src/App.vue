@@ -1,5 +1,5 @@
 <template>
-<div id="app" v-bind:style="{ backgroundColor: color}">
+<div id="app">
     <div class="wrapper">
         <h1>Python Counter</h1>
         <Form />
@@ -18,12 +18,6 @@ export default {
         Form,
         ResultsTable,
     },
-
-    data() {
-        return {
-            color: '#46B34D'
-        }
-    }
 }
 </script>
 
@@ -35,6 +29,8 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #46B34D;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -57,6 +53,6 @@ h1 {
 }
 
 .wrapper {
-    margin-top: 30px;
+    margin-bottom: 20px;
 }
 </style>
