@@ -23,7 +23,9 @@
 
 <script>
 import axios from 'axios';
-import {eventBus} from '../main.js';
+import {
+    eventBus
+} from '../main.js';
 
 
 
@@ -52,11 +54,12 @@ export default {
             let i = 0;
             const oldResults = this.results
             let x = this.polling = setInterval(() => {
-                this.getData()
-                i++;
                 if ((i >= 12) || (oldResults !== this.results)) {
                     clearInterval(x)
+                    return
                 }
+                this.getData()
+                i++;
             }, 3000)
         }
     },
