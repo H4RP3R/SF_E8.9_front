@@ -54,7 +54,7 @@ export default {
             let i = 0;
             const oldResults = this.results
             let x = this.polling = setInterval(() => {
-                if ((i >= 12) || (oldResults !== this.results)) {
+                if ((i >= 12) || (oldResults.length < this.results.length)) {
                     clearInterval(x)
                     return
                 }
