@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="result in results" :key="result.id">
+            <tr v-for="result in results" :key="result.id" v-bind:class=" {'unsuccessful' : result.http_status_code==0}">
                 <td>{{ result.id }}</td>
                 <td>{{ result.address }}</td>
                 <td>{{ result.words_count }}</td>
@@ -60,8 +60,8 @@ export default {
                 }
                 this.getData()
                 i++;
-            }, 3000)
-        }
+            }, 2000)
+        },
     },
 
     created() {
@@ -95,9 +95,15 @@ th {
     padding: 8px;
 }
 
-td {
+tr {
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     background-color: rgba(129, 210, 203, 0.5);
+}
+
+.unsuccessful {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    background-color: rgba(210, 77, 77, 0.85);
 }
 </style>
