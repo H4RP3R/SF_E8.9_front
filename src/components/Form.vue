@@ -2,7 +2,7 @@
 <div class="">
     <form class="" @submit="sendForm" method="post">
         <input v-model="address" type="url" name="url-input" id="url-input"
-        placeholder="site-to-check.com" required>
+        placeholder="https://site-to-check.com" required>
         <input type="submit" name="submit" id="submit" value="submit">
     </form>
 </div>
